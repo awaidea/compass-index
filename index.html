@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的导航页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/css/mdui.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://api.r10086.com/%E6%A8%B1%E9%81%93%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87api%E6%8E%A5%E5%8F%A3.php?%E5%9B%BE%E7%89%87%E7%B3%BB%E5%88%97=%E5%8A%A8%E6%BC%AB%E7%BB%BC%E5%90%881');
+            background-size: cover; /* 使背景图像覆盖整个页面 */
+            background-position: center; /* 使背景图像居中 */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column; /* 使内容垂直排列 */
+            min-height: 100vh; /* 确保页面至少占满整个视口高度 */
+            transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+        }
+        .navbar {
+            background-color: rgba(0, 123, 255, 0.6); /* 设置透明度为60% */
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex; /* 使用flex布局 */
+            justify-content: space-between; /* 使内容两端对齐 */
+            align-items: center; /* 垂直居中 */
+        }
+        .greeting {
+            color: white;
+            font-size: 1.2em; /* 设置问候语字体大小 */
+        }
+        .time {
+            font-size: 2em; /* 增加字体大小 */
+            margin: 80px 0 20px; /* 设置时间与其他元素的间距 */
+            font-weight: bold;
+            transition: color 0.3s; /* 添加颜色过渡效果 */
+        }
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0; /* 不再使用间距 */
+            flex-wrap: wrap; /* 允许换行 */
+        }
+        .search-box {
+            padding: 10px;
+            flex: 1; /* 使搜索框随页面大小缩放 */
+            max-width: 400px; /* 设置最大宽度 */
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px; /* 圆角处理 */
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        .search-button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 0 5px 5px 0; /* 圆角处理 */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1em;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        /* 深色模式样式 */
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .dark-mode .navbar {
+            background-color: rgba(30, 30, 30, 0.8);
+        }
+        .dark-mode .search-box {
+            border-color: #444;
+            background-color: #222;
+            color: #ffffff;
+        }
+        .dark-mode .search-button {
+            background-color: #1e88e5;
+        }
+        .dark-mode .search-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="greeting" id="greeting"></div>
+        <button class="mdui-btn mdui-btn-icon" id="themeToggle" onclick="toggleTheme()">
+            <i class="mdui-icon material-icons">brightness_6</i>
+        </button>
+    </div>
+
+    <div class="time" id="currentTime"></div>
+    
+    <div class="search-container">
+        <input type="text" class="search-box" id="searchInput" placeholder="搜索...">
+        <button class="search-button" onclick="performSearch()">搜索</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('currentTime').innerText = `${hours}:${minutes}`;
+
+            // 根据时间设置问候语
+            let greeting;
+            if (hours < 12) {
+                greeting = "早上好！";
+            } else if (hours < 18) {
+                greeting = "下午好！";
+            } else {
+                greeting = "晚上好！";
+            }
+            document.getElementById('greeting').innerText = greeting;
+
+            // 根据背景颜色调整时间文字颜色
+            adjustTextColor();
+        }
+
+        function adjustTextColor() {
+            const timeElement = document.getElementById('currentTime');
+            const backgroundColor = getComputedStyle(document.body).backgroundColor;
+            const rgb = backgroundColor.match(/\d+/g).map(Number);
+            const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+
+            // 如果亮度低于128，设置为白色，否则设置为黑色
+            timeElement.style.color = brightness < 128 ? 'white' : 'black';
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+            const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+
+            if (query) {
+                window.open(searchUrl, '_blank');
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000); // 每秒更新一次时间
+    </script>
+</body>
+</html>
