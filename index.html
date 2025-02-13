@@ -44,6 +44,12 @@
             font-size: 1.2em;
         }
 
+       .hitokoto {
+            color: white;
+            font-size: 1em;
+            margin-right: 20px;
+        }
+
        .time {
             font-size: 2em;
             font-weight: bold;
@@ -124,11 +130,6 @@
             background-color: transparent; /* 移除黑色背景 */
         }
 
-        /* 为按钮添加左边距 */
-       .theme-toggle {
-            margin-left: -10px; /* 向左移动 10px */
-        }
-
         /* 响应式设计 */
         @media (max-width: 600px) {
             .search-box {
@@ -159,9 +160,7 @@
 <body class="Stick">
     <div class="navbar">
         <div class="greeting" id="greeting"></div>
-        <button class="mdui-btn mdui-btn-icon theme-toggle" id="themeToggle" onclick="toggleTheme()">
-            <i class="mdui-icon material-icons">brightness_6</i>
-        </button>
+        <div class="hitokoto" id="hitokotoText"></div>
     </div>
 
     <div class="time" id="currentTime"></div>
@@ -203,12 +202,20 @@
             }
         }
 
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
+        function getHitokoto() {
+            fetch('https://v1.hitokoto.cn')
+              .then(response => response.json())
+              .then(data => {
+                    document.getElementById('hitokotoText').innerText = data.hitokoto;
+                })
+              .catch(error => {
+                    console.error('获取一言失败:', error);
+                });
         }
 
         updateTime();
         setInterval(updateTime, 1000); // 每秒更新一次时间
+        getHitokoto();
     </script>
 </body>
 
