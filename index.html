@@ -1,118 +1,179 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的导航页</title>
+    <title>Compass Index</title>
+    <link rel="stylesheet" href="https://static.zeoseven.com/zsft/466/main/result.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/css/mdui.min.css">
     <style>
+        /* 引入 Stick 字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Stick&display=swap');
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('https://api.r10086.com/%E6%A8%B1%E9%81%93%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87api%E6%8E%A5%E5%8F%A3.php?%E5%9B%BE%E7%89%87%E7%B3%BB%E5%88%97=%E5%8A%A8%E6%BC%AB%E7%BB%BC%E5%90%881');
-            background-size: cover; /* 使背景图像覆盖整个页面 */
-            background-position: center; /* 使背景图像居中 */
+            font-family: 'Stick', sans-serif;
+            background-image: url('https://api.dwo.cc/api/bing'); /* 更新背景图片 */
+            background-size: cover;
+            background-position: center;
             color: #333;
             margin: 0;
             padding: 0;
             text-align: center;
             display: flex;
-            flex-direction: column; /* 使内容垂直排列 */
-            min-height: 100vh; /* 确保页面至少占满整个视口高度 */
-            transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .navbar {
-            background-color: rgba(0, 123, 255, 0.6); /* 设置透明度为60% */
+
+       .navbar {
+            background-color: rgba(0, 123, 255, 0.6);
             padding: 10px;
             position: fixed;
             top: 0;
             width: 100%;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            display: flex; /* 使用flex布局 */
-            justify-content: space-between; /* 使内容两端对齐 */
-            align-items: center; /* 垂直居中 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .greeting {
+
+       .greeting {
             color: white;
-            font-size: 1.2em; /* 设置问候语字体大小 */
+            font-size: 1.2em;
         }
-        .time {
-            font-size: 2em; /* 增加字体大小 */
-            margin: 80px 0 20px; /* 设置时间与其他元素的间距 */
+
+       .time {
+            font-size: 2em;
             font-weight: bold;
-            transition: color 0.3s; /* 添加颜色过渡效果 */
+            color: white; /* 字体颜色锁定为白色 */
+            margin: 80px 0 20px; /* 上下边距 */
+            transition: color 0.3s;
         }
-        .search-container {
+
+       .search-container {
             margin: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0; /* 不再使用间距 */
-            flex-wrap: wrap; /* 允许换行 */
+            gap: 0;
+            flex-wrap: wrap;
         }
-        .search-box {
+
+       .search-box {
             padding: 10px;
-            flex: 1; /* 使搜索框随页面大小缩放 */
-            max-width: 400px; /* 设置最大宽度 */
+            flex: 1;
+            max-width: 400px;
             border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px; /* 圆角处理 */
+            border-radius: 5px 0 0 5px;
             font-size: 1em;
             transition: border-color 0.3s;
         }
-        .search-box:focus {
+
+       .search-box:focus {
             border-color: #007BFF;
             outline: none;
         }
-        .search-button {
+
+       .search-button {
             padding: 10px 15px;
             border: none;
             background-color: #007BFF;
             color: white;
-            border-radius: 0 5px 5px 0; /* 圆角处理 */
+            border-radius: 0 5px 5px 0;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             font-size: 1em;
         }
-        .search-button:hover {
+
+       .search-button:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
+
         /* 深色模式样式 */
-        .dark-mode {
+       .dark-mode {
             background-color: #121212;
             color: #ffffff;
         }
-        .dark-mode .navbar {
+
+       .dark-mode.navbar {
             background-color: rgba(30, 30, 30, 0.8);
         }
-        .dark-mode .search-box {
+
+       .dark-mode.search-box {
             border-color: #444;
             background-color: #222;
             color: #ffffff;
         }
-        .dark-mode .search-button {
+
+       .dark-mode.search-button {
             background-color: #1e88e5;
         }
-        .dark-mode .search-button:hover {
+
+       .dark-mode.search-button:hover {
             background-color: #1565c0;
+        }
+
+        /* 页脚样式 */
+        footer {
+            margin-top: auto; /* 将页脚推到页面底部 */
+            padding: 10px;
+            color: white; /* 保留文字颜色为白色 */
+            background-color: transparent; /* 移除黑色背景 */
+        }
+
+        /* 为按钮添加左边距 */
+       .theme-toggle {
+            margin-left: -10px; /* 向左移动 10px */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .search-box {
+                max-width: 200px;
+                font-size: 0.9em;
+            }
+
+            .search-button {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .search-box {
+                max-width: 150px;
+                font-size: 0.8em;
+            }
+
+            .search-button {
+                padding: 10px 10px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
-<body>
+
+<body class="Stick">
     <div class="navbar">
         <div class="greeting" id="greeting"></div>
-        <button class="mdui-btn mdui-btn-icon" id="themeToggle" onclick="toggleTheme()">
+        <button class="mdui-btn mdui-btn-icon theme-toggle" id="themeToggle" onclick="toggleTheme()">
             <i class="mdui-icon material-icons">brightness_6</i>
         </button>
     </div>
 
     <div class="time" id="currentTime"></div>
-    
+
     <div class="search-container">
         <input type="text" class="search-box" id="searchInput" placeholder="搜索...">
         <button class="search-button" onclick="performSearch()">搜索</button>
     </div>
+
+    <footer>
+        Copyright &copy; WinterCat
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
     <script>
@@ -122,7 +183,6 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             document.getElementById('currentTime').innerText = `${hours}:${minutes}`;
 
-            // 根据时间设置问候语
             let greeting;
             if (hours < 12) {
                 greeting = "早上好！";
@@ -132,19 +192,6 @@
                 greeting = "晚上好！";
             }
             document.getElementById('greeting').innerText = greeting;
-
-            // 根据背景颜色调整时间文字颜色
-            adjustTextColor();
-        }
-
-        function adjustTextColor() {
-            const timeElement = document.getElementById('currentTime');
-            const backgroundColor = getComputedStyle(document.body).backgroundColor;
-            const rgb = backgroundColor.match(/\d+/g).map(Number);
-            const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
-
-            // 如果亮度低于128，设置为白色，否则设置为黑色
-            timeElement.style.color = brightness < 128 ? 'white' : 'black';
         }
 
         function performSearch() {
@@ -164,4 +211,5 @@
         setInterval(updateTime, 1000); // 每秒更新一次时间
     </script>
 </body>
+
 </html>
