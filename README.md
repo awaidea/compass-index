@@ -5,7 +5,7 @@
 - Yiyan Support
 - Bing Search
 - Time greetting
-## Plan
+## Future
 - [ ] Daily Hot
 - [ ] Github Auth
 - [ ] Mark Site
