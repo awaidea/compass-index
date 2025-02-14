@@ -14,7 +14,7 @@
 - Turn to settings page
 - Click Pages
 - Enable this opinion and set deploy from "main"
-## OSL
+## Open Source License
 **MIT**
 
 Copyright © WinterCat([awaidea](https://github.com/awaidea))
