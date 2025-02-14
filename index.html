@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://static.zeoseven.com/zsft/466/main/result.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/css/mdui.min.css">
+    <!-- 添加favicon链接 -->
+    <link rel="icon" href="s2.loli.net/2025/02/14/PZqQNXITA2mJOza.png" type="image/png"> 
     <style>
         /* 引入 Stick 字体 */
         @import url('https://fonts.googleapis.com/css2?family=Stick&display=swap');
@@ -26,7 +28,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-       .navbar {
+      .navbar {
             background-color: rgba(0, 123, 255, 0.6);
             padding: 10px;
             position: fixed;
@@ -39,18 +41,18 @@
             align-items: center;
         }
 
-       .greeting {
+      .greeting {
             color: white;
             font-size: 1.2em;
         }
 
-       .hitokoto {
+      .hitokoto {
             color: white;
             font-size: 1em;
             margin-right: 20px;
         }
 
-       .time {
+      .time {
             font-size: 2em;
             font-weight: bold;
             color: white; /* 字体颜色锁定为白色 */
@@ -58,7 +60,7 @@
             transition: color 0.3s;
         }
 
-       .search-container {
+      .search-container {
             margin: 20px 0;
             display: flex;
             justify-content: center;
@@ -67,7 +69,7 @@
             flex-wrap: wrap;
         }
 
-       .search-box {
+      .search-box {
             padding: 10px;
             flex: 1;
             max-width: 400px;
@@ -77,12 +79,12 @@
             transition: border-color 0.3s;
         }
 
-       .search-box:focus {
+      .search-box:focus {
             border-color: #007BFF;
             outline: none;
         }
 
-       .search-button {
+      .search-button {
             padding: 10px 15px;
             border: none;
             background-color: #007BFF;
@@ -93,32 +95,32 @@
             font-size: 1em;
         }
 
-       .search-button:hover {
+      .search-button:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
 
         /* 深色模式样式 */
-       .dark-mode {
+      .dark-mode {
             background-color: #121212;
             color: #ffffff;
         }
 
-       .dark-mode.navbar {
+      .dark-mode.navbar {
             background-color: rgba(30, 30, 30, 0.8);
         }
 
-       .dark-mode.search-box {
+      .dark-mode.search-box {
             border-color: #444;
             background-color: #222;
             color: #ffffff;
         }
 
-       .dark-mode.search-button {
+      .dark-mode.search-button {
             background-color: #1e88e5;
         }
 
-       .dark-mode.search-button:hover {
+      .dark-mode.search-button:hover {
             background-color: #1565c0;
         }
 
@@ -134,7 +136,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.15);  /* 顶部边框 */
         }
 
-        .footer-content {
+      .footer-content {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -158,17 +160,17 @@
 
         /* 响应式设计 */
         @media (max-width: 600px) {
-            .search-box {
+          .search-box {
                 max-width: 200px;
                 font-size: 0.9em;
             }
 
-            .search-button {
+          .search-button {
                 padding: 10px 12px;
                 font-size: 0.9em;
             }
 
-            .footer-content {
+          .footer-content {
                 gap: 15px; /* 在小屏幕上减少间距 */
                 font-size: 0.85em;
             }
@@ -181,12 +183,12 @@
         }
 
         @media (max-width: 400px) {
-            .search-box {
+          .search-box {
                 max-width: 150px;
                 font-size: 0.8em;
             }
 
-            .search-button {
+          .search-button {
                 padding: 10px 10px;
                 font-size: 0.8em;
             }
@@ -245,11 +247,11 @@
 
         function getHitokoto() {
             fetch('https://v1.hitokoto.cn')
-              .then(response => response.json())
-              .then(data => {
+             .then(response => response.json())
+             .then(data => {
                     document.getElementById('hitokotoText').innerText = data.hitokoto;
                 })
-              .catch(error => {
+             .catch(error => {
                     console.error('获取一言失败:', error);
                 });
         }
