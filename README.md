@@ -12,7 +12,7 @@
 ## Install
 - Fork this repo
 - Turn to settings page
-- Click Pages
+- Click "Pages"
 - Enable this opinion and set deploy from "main"
 ## Open Source License
 **MIT**
