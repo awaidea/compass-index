@@ -122,12 +122,38 @@
             background-color: #1565c0;
         }
 
-        /* 页脚样式 */
+        /* 更新后的页脚样式 */
         footer {
             margin-top: auto; /* 将页脚推到页面底部 */
-            padding: 10px;
-            color: white; /* 保留文字颜色为白色 */
-            background-color: transparent; /* 移除黑色背景 */
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);  /* 背景模糊效果 */
+            -webkit-backdrop-filter: blur(10px);  /* 兼容Safari */
+            border-top: 1px solid rgba(255, 255, 255, 0.15);  /* 顶部边框 */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px; /* 调整内容之间的间距 */
+            flex-wrap: wrap; /* 允许内容在小屏幕上换行 */
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        footer a:hover {
+            color: #007BFF;
+            background-color: rgba(255, 255, 255, 0.1);  /* 悬停微光效果 */
+            text-decoration: none;
         }
 
         /* 响应式设计 */
@@ -140,6 +166,17 @@
             .search-button {
                 padding: 10px 12px;
                 font-size: 0.9em;
+            }
+
+            .footer-content {
+                gap: 15px; /* 在小屏幕上减少间距 */
+                font-size: 0.85em;
+            }
+
+            footer {
+                padding: 15px;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
             }
         }
 
@@ -171,7 +208,11 @@
     </div>
 
     <footer>
-        Copyright &copy; WinterCat|<a href="https://icp.gov.moe/?keyword=20250029" target="_blank">萌ICP备20250029号</a>|<a href="https://bgithub.xyz/awaidea/compass-index" target="_blank">GitHub</a>
+        <div class="footer-content">
+            <span>Copyright &copy; WinterCat</span>
+            <span><a href="https://icp.gov.moe/?keyword=20250029" target="_blank">萌ICP备20250029号</a></span>
+            <span><a href="https://bgithub.xyz/awaidea/compass-index" target="_blank">GitHub</a></span>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.1/js/mdui.min.js"></script>
