@@ -17,4 +17,4 @@
 ## Open Source License
 **MIT**
 
-Copyright © WinterCat([awaidea](https://github.com/awaidea))
+Copyright © EdgeCat([awaidea](https://github.com/awaidea))
