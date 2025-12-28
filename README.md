@@ -1,4 +1,3 @@
-![](https://acbox.app/f/22vEh8/cpindex-banner-no-water-mark.webp.png)
 # Compass Index
 **A simple guide page**
 ## Specials
